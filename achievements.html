@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実績・講師活動 - 打田裕馬</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .achievements-hero {
+            background: var(--gradient-hero);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .achievements-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .achievements-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .achievement-category {
+            padding: 80px 0;
+        }
+        
+        .achievement-category:nth-child(even) {
+            background: var(--surface);
+        }
+        
+        .achievement-item {
+            background: white;
+            border-radius: 20px;
+            padding: 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+        
+        .achievement-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-accent);
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px var(--shadow-warm);
+        }
+        
+        .achievement-header-clickable {
+            padding: 2rem 3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.3s ease;
+        }
+        
+        .achievement-header-clickable:hover {
+            background-color: var(--surface);
+        }
+        
+        .achievement-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .achievement-item.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+        
+        .achievement-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            padding: 0 3rem;
+        }
+        
+        .achievement-item.expanded .achievement-details {
+            max-height: 2000px;
+            padding: 0 3rem 3rem 3rem;
+        }
+        
+        .achievement-summary {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            gap: 1rem;
+        }
+        
+        .achievement-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .achievement-title {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .achievement-title h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+        }
+        
+        .achievement-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .achievement-content {
+            line-height: 1.8;
+        }
+        
+        .achievement-content h4 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .achievement-content ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .achievement-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tech-tag {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+        }
+        
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--surface);
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .lecture-info {
+            background: linear-gradient(135deg, var(--surface-warm) 0%, var(--surface) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid var(--warm-color);
+            box-shadow: 0 4px 20px var(--shadow-warm);
+        }
+        
+        .lecture-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .lecture-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+        
+        .lecture-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .lecture-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .lecture-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .lecture-images {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        
+        .lecture-images .lecture-image {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .back-to-home {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 25px var(--shadow);
+            transition: all 0.4s ease;
+            z-index: 1000;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .back-to-home:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 12px 35px var(--shadow-warm);
+            background: var(--gradient-warm);
+        }
+        
+        @media (max-width: 768px) {
+            .achievements-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .achievement-item {
+                padding: 2rem;
+            }
+            
+            .achievement-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .achievement-title {
+                min-width: auto;
+            }
+            
+            .project-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .back-to-home {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Yuma Uchida</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#experience" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="achievements.html" class="nav-link active">実績</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="achievements-hero">
+        <div class="container">
+            <h1>実績・講師活動</h1>
+            <p>これまでに手がけたプロジェクトと講師活動をご紹介します。技術的な挑戦から人材育成まで、幅広い分野での実績をまとめています。</p>
+        </div>
+    </section>
+
+    <section class="achievement-category">
+        <div class="container">
+            <h2 class="section-title">主要プロジェクト実績</h2>
+            
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">🏥</div>
+                        <div class="achievement-title">
+                            <h3>医療機関向けCRMおよびLINEミニアプリ開発</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2024年1月 - 2025年4月</span>
+                                <span>🏢 株式会社S</span>
+                                <span>👥 チーム規模: 20名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <h4>プロジェクト概要</h4>
+                    <p>医療機関向けの包括的なCRMシステムとLINEミニアプリケーションを開発。3部署へのヒアリングから始まり、要件定義・設計・実装・テスト・運用まで一貫して担当。</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP 8.1</span>
+                        <span class="tech-tag">Laravel 9</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">jQuery</span>
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">MySQL 8.0 (Aurora)</span>
+                        <span class="tech-tag">AWS (EC2, S3, CloudFront, RDS, ElastiCache)</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">BigQuery</span>
+                        <span class="tech-tag">Google App Script</span>
+                        <span class="tech-tag">GitLab CI</span>
+                        <span class="tech-tag">Amazon Linux 2023</span>
+                        <span class="tech-tag">Playwright</span>
+                    </div>
+                    
+                    <h4>担当業務・成果</h4>
+                    <h5>PM・PL担当業務</h5>
+                    <ul>
+                        <li>顧客折衝と要件定義</li>
+                        <li>基本設計とスケジュール立案</li>
+                        <li>中長期戦略立案</li>
+                        <li>自動テスト導入戦略立案</li>
+                        <li>コードレビュー、設計レビュー</li>
+                    </ul>
+                    
+                    <h5>PG担当業務</h5>
+                    <ul>
+                        <li>基本設計・詳細設計</li>
+                        <li>コーディング・テスト</li>
+                        <li>利用者向けマニュアル作成</li>
+                        <li>新規参画者へのコーディング指導</li>
+                    </ul>
+                    
+                    <h5>習得スキル・成果</h5>
+                    <ul>
+                        <li>サブリーダーを含めた3階層チームのマネジメント</li>
+                        <li>LINEミニアプリ開発、運用のノウハウ</li>
+                        <li>マーケティングに関わるデータ分析</li>
+                        <li>任せるマネジメントスタイルの習得</li>
+                        <li>利害関係者間の合意形成スキル</li>
+                        <li>システム開発と連携したマーケティング知識</li>
+                    </ul>
+                    
+                    <div class="project-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">20</span>
+                            <span class="stat-label">チームメンバー</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">開発ツール数</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">連携部署数</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">16</span>
+                            <span class="stat-label">プロジェクト期間（月）</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">🌱</div>
+                        <div class="achievement-title">
+                            <h3>人工芝フランチャイズ向けシステム開発</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2019年6月 - 2024年2月</span>
+                                <span>🏢 有限会社S</span>
+                                <span>👥 チーム規模: 2-5名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <h4>プロジェクト概要</h4>
+                    <p>人工芝フランチャイズ本部および加盟店向けの包括的な業務管理システムを開発。在庫管理から顧客管理まで、フランチャイズ運営に必要な全機能を統合したシステムを構築。</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP 8.1</span>
+                        <span class="tech-tag">Laravel 6/8/10</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">jQuery 3.1</span>
+                        <span class="tech-tag">Sass</span>
+                        <span class="tech-tag">HTML (Blade)</span>
+                        <span class="tech-tag">MariaDB 10.4</span>
+                        <span class="tech-tag">Ubuntu 20.04 (AWS Lightsail)</span>
+                        <span class="tech-tag">AWS ECS</span>
+                        <span class="tech-tag">AWS CloudFront</span>
+                        <span class="tech-tag">AWS S3</span>
+                        <span class="tech-tag">CircleCI</span>
+                        <span class="tech-tag">Laravel Dusk</span>
+                    </div>
+                    
+                    <h4>担当業務・成果</h4>
+                    <ul>
+                        <li>顧客対応からコーディングまで全工程を担当</li>
+                        <li>経営者・業務管理スタッフへのヒアリングと要件定義書作成</li>
+                        <li>人工芝の在庫管理・見積もり・発注・施工管理・顧客管理システム開発</li>
+                        <li>MariaDBによるデータベース設計・最適化</li>
+                        <li>フロントエンド・サーバーサイドの実装</li>
+                        <li>本番インフラ構築（AWS ECS、Lightsail）</li>
+                        <li>CircleCIを使ったCI/CDパイプライン構築</li>
+                        <li>E2Eテストの作成とテスト駆動開発</li>
+                        <li>利用者向けマニュアル作成</li>
+                        <li>チームメンバーの指導・マネジメント</li>
+                    </ul>
+                    
+                    <h5>習得スキル</h5>
+                    <ul>
+                        <li>CI/CDパイプラインの構築</li>
+                        <li>顧客ヒアリング・マネジメント</li>
+                        <li>E2Eテストの構築とテスト駆動開発</li>
+                        <li>コンテナを用いた本番環境の構築</li>
+                    </ul>
+                    
+                    <div class="project-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">4.7</span>
+                            <span class="stat-label">プロジェクト期間（年）</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">主要機能数</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">要件カバー率</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Laravel版数対応</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">🧠</div>
+                        <div class="achievement-title">
+                            <h3>AIカウンセリングアプリ「AI Therapy Hub」</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2023年6月 - 2024年12月</span>
+                                <span>🏢 個人プロジェクト</span>
+                                <span>👥 個人開発</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <h4>プロジェクト概要</h4>
+                    <p>心理学の専門知識とAI技術を組み合わせた革新的なカウンセリングアプリケーション。ChatGPT APIを活用し、24時間アクセス可能なメンタルヘルスサポートを提供。</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">React Native 0.71</span>
+                        <span class="tech-tag">Next.js 14.4</span>
+                        <span class="tech-tag">JavaScript (ES6)</span>
+                        <span class="tech-tag">Firestore (NoSQL)</span>
+                        <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">Prisma</span>
+                        <span class="tech-tag">Amazon ECS (Fargate)</span>
+                        <span class="tech-tag">Vercel</span>
+                        <span class="tech-tag">Jest</span>
+                        <span class="tech-tag">ChatGPT API</span>
+                    </div>
+                    
+                    <h4>担当業務・成果</h4>
+                    <ul>
+                        <li>企画・デザイン・設計・コーディングを全て単独で担当</li>
+                        <li>ChatGPT APIを活用したインテリジェントなカウンセリング機能を実装</li>
+                        <li>React Nativeによるクロスプラットフォームモバイルアプリ開発</li>
+                        <li>心理学の専門知識を技術に融合した独自性の高いサービス設計</li>
+                    </ul>
+                    
+                    <h5>習得スキル</h5>
+                    <ul>
+                        <li>node_moduleを使った多言語対応</li>
+                        <li>ChatGPTから適切な回答を引き出すプロンプト技術</li>
+                        <li>最新版ReactNativeの知見（ルーティングやクラウドビルドなど）</li>
+                    </ul>
+                    
+                    <div class="project-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1.5</span>
+                            <span class="stat-label">開発期間（年）</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">プラットフォーム数</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">多言語</span>
+                            <span class="stat-label">対応状況</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">AI</span>
+                            <span class="stat-label">技術活用</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">✈️</div>
+                        <div class="achievement-title">
+                            <h3>個人向け旅程立案アプリケーション開発</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2020年6月 - 2021年3月</span>
+                                <span>🏢 A株式会社</span>
+                                <span>👥 チーム規模: 4-6名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <h4>プロジェクト概要</h4>
+                    <p>旅行関連サービス企業向けの個人向け旅程立案アプリケーション。ユーザーが直感的に旅行プランを作成でき、オフライン環境でも利用可能なPWA対応を実現。</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">Go 1.7</span>
+                        <span class="tech-tag">React.js 17.0</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Kubernetes (GKE)</span>
+                        <span class="tech-tag">PWA</span>
+                        <span class="tech-tag">Service Worker</span>
+                    </div>
+                    
+                    <h4>担当業務・成果</h4>
+                    <ul>
+                        <li>リーダーとしてのプロジェクト管理</li>
+                        <li>フロントエンド・バックエンド・インフラ構築を担当</li>
+                        <li>Goによる高性能なサーバーサイドプログラミング</li>
+                        <li>React.jsを使った直感的なユーザーインターフェース構築</li>
+                        <li>Service Workerによるオフライン対応PWA実装</li>
+                        <li>Kubernetes(GKE)によるコンテナ本番環境の管理</li>
+                        <li>PostgreSQLの運用</li>
+                    </ul>
+                    
+                    <h5>習得スキル</h5>
+                    <ul>
+                        <li>Goによるサーバーサイドプログラミング</li>
+                        <li>Kubernetes(GKE)によるコンテナ本番環境の管理</li>
+                        <li>PostgreSQLの運用</li>
+                        <li>Service Workerによるオフライン対応</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+
+            <!-- 追加の実績項目 -->
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">👥</div>
+                        <div class="achievement-title">
+                            <h3>イベント企画会社向け営業ツール開発</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2019年12月 - 2020年3月</span>
+                                <span>🏢 株式会社L</span>
+                                <span>👥 チーム規模: 3-4名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                        <h4>プロジェクト概要</h4>
+                        <p>人材派遣・イベント企画会社向けの営業支援ツールを開発。営業プロセスの効率化と顧客管理の最適化を実現。</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">PHP 7.1</span>
+                            <span class="tech-tag">Laravel 6.2</span>
+                            <span class="tech-tag">MariaDB</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        
+                        <h4>担当業務・成果</h4>
+                        <ul>
+                            <li>営業プロセス分析と要件定義</li>
+                            <li>顧客管理システムの設計・開発</li>
+                            <li>営業データの可視化機能実装</li>
+                            <li>レスポンシブWebアプリケーション開発</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">💼</div>
+                        <div class="achievement-title">
+                            <h3>経営者・個人事業主向けサービス開発</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2018年4月 - 2019年9月</span>
+                                <span>🏢 株式会社W</span>
+                                <span>👥 チーム規模: 8-12名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                        <h4>プロジェクト概要</h4>
+                        <p>経営者・個人事業主向けの大規模Webサービス開発プロジェクト。プログラマーからプロジェクトマネージャーへの昇格を果たしたキャリア転換点となった案件。</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">Codeigniter</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        
+                        <h4>担当業務・成果</h4>
+                        <ul>
+                            <li>プログラマーからプロジェクトマネージャーへの昇格</li>
+                            <li>大規模システムの設計・開発管理</li>
+                            <li>チームマネジメントとスケジュール管理</li>
+                            <li>クライアント要件のシステム仕様への落とし込み</li>
+                            <li>品質管理とテスト工程の統括</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">🔒</div>
+                        <div class="achievement-title">
+                            <h3>士業向けファイル共有ツール開発</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2018年2月 - 2018年10月</span>
+                                <span>🏢 OL株式会社</span>
+                                <span>👥 チーム規模: 2-3名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                        <h4>プロジェクト概要</h4>
+                        <p>インフラ系サービス企業向けの士業専用セキュアファイル共有システム。高度なセキュリティ要件を満たすシステム開発。</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">Samba</span>
+                            <span class="tech-tag">GPG</span>
+                            <span class="tech-tag">LAMP</span>
+                            <span class="tech-tag">Linux</span>
+                        </div>
+                        
+                        <h4>担当業務・成果</h4>
+                        <ul>
+                            <li>セキュリティ要件の分析・設計</li>
+                            <li>GPGによるファイル暗号化機能実装</li>
+                            <li>Sambaを使用したファイル共有システム構築</li>
+                            <li>手作業によるLAMP環境構築・運用</li>
+                            <li>士業特有の業務フローに対応したUI/UX設計</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">🎁</div>
+                        <div class="achievement-title">
+                            <h3>ソーシャルギフトサービス「Anny」開発</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2017年9月 - 2017年12月</span>
+                                <span>🏢 トレンダーズ株式会社（現株式会社Anny）</span>
+                                <span>👥 チーム規模: 5-7名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                        <h4>プロジェクト概要</h4>
+                        <p>初のフリーランス案件として参画したソーシャルギフトサービス「Anny」のフロントエンド開発。EC機能を中心とした大規模Webサービス開発。</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Ruby on Rails</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Sass</span>
+                            <span class="tech-tag">jQuery</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        
+                        <h4>担当業務・成果</h4>
+                        <ul>
+                            <li>フロントエンド開発（JavaScript、Sass）</li>
+                            <li>ユーザーインターフェースの実装・改善</li>
+                            <li>レスポンシブデザインの対応</li>
+                            <li>EC機能の開発・テスト</li>
+                            <li>フリーランスとしての初案件成功</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="achievement-category">
+        <div class="container">
+            <h2 class="section-title">講師・研修実績</h2>
+            
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">🐳</div>
+                        <div class="achievement-title">
+                            <h3>Docker基礎実践編 講師</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2020年6月</span>
+                                <span>🏢 インプレス出版</span>
+                                <span>👥 受講者: 30名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <p>インプレスアカデミーにて、コンテナ技術の基礎から実践的な活用方法まで幅広くカバーする2日間集中講座を実施。既存システムのコンテナ化手法を中心に、実務で即活用できる内容を提供。</p>
+                    
+                    <div class="lecture-info">
+                        <h4>📋 講座内容</h4>
+                        <ul>
+                            <li>Dockerの基本概念とアーキテクチャ解説</li>
+                            <li>実際の手を動かすハンズオン演習中心</li>
+                            <li>既存システムの漸進的コンテナ化手法</li>
+                            <li>Docker Compose による実践的なコンテナ構築</li>
+                            <li>本番環境での運用を意識した内容構成</li>
+                        </ul>
+                        
+                        <h4>🎯 受講者からの評価</h4>
+                        <ul>
+                            <li>「コンテナの基本的な概念がよくわかりました」</li>
+                            <li>「実機操作する時間が多い点もありがたかったです」</li>
+                            <li>「Dockerfileを読める/Docker-composeを使えるようになれて大変満足です」</li>
+                            <li>「わかりやすい説明であり、理解が深まる」</li>
+                        </ul>
+                        
+                        <img src="images/impress-docker.png" alt="Docker基礎実践編講座の様子" class="lecture-image">
+                        
+                        <a href="https://academy.impress.co.jp/event/cloudnative202006/" class="lecture-link" target="_blank">
+                            📖 講座詳細を見る
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">☸️</div>
+                        <div class="achievement-title">
+                            <h3>Kubernetes入門編 講師</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2021年5月</span>
+                                <span>🏢 インプレス出版</span>
+                                <span>👥 受講者: 30名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <p>コンテナオーケストレーションシステムであるKubernetesの重要性と学習の困難さを踏まえ、実践的なハンズオン中心の講座を開催。アプリケーション開発者の視点で必要な知識を体系的に指導。</p>
+                    
+                    <div class="lecture-info">
+                        <h4>📋 講座内容</h4>
+                        <ul>
+                            <li>Kubernetesの基本概要とアーキテクチャ</li>
+                            <li>各種リソース管理をコマンドとマニフェストファイルで実習</li>
+                            <li>Pod、Service、Deployment等の主要コンポーネント実践</li>
+                            <li>ConfigMapとSecretによる設定管理手法</li>
+                            <li>実際のクラスター環境での演習（Rancher使用）</li>
+                        </ul>
+                        
+                        <h4>🎯 受講者からの評価</h4>
+                        <ul>
+                            <li>「講座だけでは理解しづらい部分も手触り感を持って学ぶことができました」</li>
+                            <li>「なかなかこれだけのハンズオンがある講座はないので初心者にはお勧めです」</li>
+                            <li>「講師がプロフェッショナルなのでなおさら感じた」</li>
+                            <li>「Kubernetesを使おうとしてる人に最適の講座です」</li>
+                        </ul>
+                        
+                        <img src="images/impress-kubernetes.png" alt="Kubernetes入門編講座の様子" class="lecture-image">
+                        
+                        <a href="https://academy.impress.co.jp/event/cloudnative-k8s202105/" class="lecture-link" target="_blank">
+                            📖 講座詳細を見る
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">🎓</div>
+                        <div class="achievement-title">
+                            <h3>Udemy ベストセラー講師</h3>
+                            <div class="achievement-meta">
+                                <span>📅 継続中</span>
+                                <span>🏢 Udemy Platform</span>
+                                <span>👥 総受講者数: 25,000名</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <p>世界最大級のオンライン学習プラットフォームUdemyにて、プログラミング・インフラ技術に関する講座を提供。UdemyBusinessにも登録され、企業研修での活用も進んでいる。</p>
+                    
+                    <div class="lecture-info">
+                        <h4>🏆 主な実績</h4>
+                        <ul>
+                            <li>ベストセラー講師認定獲得</li>
+                            <li>総受講者数25,000名達成</li>
+                            <li>UdemyBusinessへの登録（企業研修対応）</li>
+                            <li>YouTubeチャンネル登録者6000人達成</li>
+                            <li>プログラミング・インフラ技術を中心とした幅広い講座提供</li>
+                            <li>実践的な内容で高い受講者満足度を維持</li>
+                        </ul>
+                        
+                        <div class="lecture-images">
+                            <img src="images/udemy1.png" alt="Udemy講座実績1" class="lecture-image">
+                            <img src="images/udemy2.png" alt="Udemy講座実績2" class="lecture-image">
+                        </div>
+                        
+                        <a href="https://www.udemy.com/user/uchidayuma/" class="lecture-link" target="_blank">
+                            🎬 Udemyプロフィールを見る
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="achievement-category">
+        <div class="container">
+            <h2 class="section-title">事業戦略・ブランディング実績</h2>
+            
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">🎯</div>
+                        <div class="achievement-title">
+                            <h3>フリーランスPM×メンタルケア戦略</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2024年 - 現在</span>
+                                <span>🏢 個人ブランディング</span>
+                                <span>🎯 目標年商: 3000万円</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <h4>戦略概要</h4>
+                    <p>「内向的エンジニアが、自分らしくPMとして成功し、年収1200万円を実現する方法」をコアコンセプトに、技術職からマネジメント職への転向支援事業を展開。</p>
+                    
+                    <div class="lecture-info">
+                        <h4>📊 事業戦略</h4>
+                        <ul>
+                            <li><strong>ターゲット:</strong> 30代内向的エンジニア（年収600-800万円）</li>
+                            <li><strong>差別化ポイント:</strong> 内向的・HSP気質を「変える」ではなく「活かす」アプローチ</li>
+                            <li><strong>コンテンツ展開:</strong> YouTube、Threads、オンラインコース</li>
+                            <li><strong>収益モデル:</strong> コース販売、グループコーチング、メンタリング</li>
+                        </ul>
+                        
+                        <h4>🎨 ブランドカラー設計</h4>
+                        <div class="tech-stack">
+                            <span class="tech-tag">メイン: #1E3A5F</span>
+                            <span class="tech-tag">サブ: #E8F4F8</span>
+                            <span class="tech-tag">アクセント: #00C896</span>
+                        </div>
+                        
+                        <h4>📈 成功指標</h4>
+                        <ul>
+                            <li>短期（6ヶ月）: YouTube登録者1万人、月商100万円</li>
+                            <li>中期（1年）: YouTube登録者3万人、月商250万円</li>
+                            <li>長期（2年）: YouTube登録者5万人、年商3000万円</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="achievement-category">
+        <div class="container">
+            <h2 class="section-title">技術スキル詳細評価</h2>
+            
+            <div class="achievement-item">
+                <div class="achievement-header-clickable" onclick="toggleAchievement(this)">
+                    <div class="achievement-summary">
+                        <div class="achievement-icon">💻</div>
+                        <div class="achievement-title">
+                            <h3>技術スキル詳細（10段階評価）</h3>
+                            <div class="achievement-meta">
+                                <span>📅 2024年現在</span>
+                                <span>📊 自己評価 + 実績ベース</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-toggle">
+                        <span>詳細を見る</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="achievement-details">
+                    <div class="achievement-content">
+                    <div class="project-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">9/10</span>
+                            <span class="stat-label">PHP</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8/10</span>
+                            <span class="stat-label">JavaScript</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">7/10</span>
+                            <span class="stat-label">React.js</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">9/10</span>
+                            <span class="stat-label">Docker</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">6/10</span>
+                            <span class="stat-label">ECS(AWS)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4/10</span>
+                            <span class="stat-label">Kubernetes</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4/10</span>
+                            <span class="stat-label">Go</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">6/10</span>
+                            <span class="stat-label">Svelte.js</span>
+                        </div>
+                    </div>
+                    
+                    <h4>🛠 主要な習得技術・経験</h4>
+                    <ul>
+                        <li><strong>フロントエンド:</strong> React, Vue.js, JavaScript(ES6), Sass/SCSS, レスポンシブデザイン</li>
+                        <li><strong>バックエンド:</strong> PHP(Laravel), Go, Ruby on Rails, Node.js</li>
+                        <li><strong>データベース:</strong> MySQL, PostgreSQL, MariaDB, Firestore</li>
+                        <li><strong>インフラ・DevOps:</strong> AWS(EC2, S3, RDS, ECS, CloudFront), Docker, Kubernetes, CircleCI</li>
+                        <li><strong>モバイル開発:</strong> React Native</li>
+                        <li><strong>その他:</strong> PWA, E2Eテスト, ChatGPT API連携</li>
+                    </ul>
+                    
+                    <h4>👥 マネジメント経験</h4>
+                    <ul>
+                        <li><strong>最大チーム規模:</strong> 20名（医療向けCRMプロジェクト）</li>
+                        <li><strong>得意なチーム規模:</strong> 10名以下の小規模チーム</li>
+                        <li><strong>マネジメントスタイル:</strong> 要件定義の徹底、メンバーの負荷軽減、柔軟なサポート</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Yuma Uchida. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="index.html" class="back-to-home" title="ホームに戻る">
+        🏠
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleAchievement(element) {
+            const achievementItem = element.closest('.achievement-item');
+            const toggleText = element.querySelector('.achievement-toggle span');
+            const isExpanded = achievementItem.classList.contains('expanded');
+            
+            if (isExpanded) {
+                achievementItem.classList.remove('expanded');
+                toggleText.textContent = '詳細を見る';
+            } else {
+                achievementItem.classList.add('expanded');
+                toggleText.textContent = '閉じる';
+            }
+        }
+
+        // 全て展開/閉じる機能
+        function addToggleAllButtons() {
+            const sections = document.querySelectorAll('.achievement-category');
+            
+            sections.forEach(section => {
+                const title = section.querySelector('.section-title');
+                if (title) {
+                    const buttonContainer = document.createElement('div');
+                    buttonContainer.style.cssText = `
+                        text-align: center;
+                        margin: 2rem 0;
+                        display: flex;
+                        gap: 1rem;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    `;
+                    
+                    const expandAllBtn = document.createElement('button');
+                    expandAllBtn.textContent = '全て展開';
+                    expandAllBtn.className = 'btn btn-primary';
+                    expandAllBtn.style.cssText = `
+                        padding: 0.5rem 1rem;
+                        font-size: 0.9rem;
+                        border-radius: 20px;
+                    `;
+                    
+                    const collapseAllBtn = document.createElement('button');
+                    collapseAllBtn.textContent = '全て閉じる';
+                    collapseAllBtn.className = 'btn btn-secondary';
+                    collapseAllBtn.style.cssText = `
+                        padding: 0.5rem 1rem;
+                        font-size: 0.9rem;
+                        border-radius: 20px;
+                        background: #6b7280;
+                        border: 2px solid #6b7280;
+                        color: white;
+                    `;
+                    
+                    expandAllBtn.addEventListener('click', () => {
+                        const items = section.querySelectorAll('.achievement-item');
+                        items.forEach(item => {
+                            if (!item.classList.contains('expanded')) {
+                                const header = item.querySelector('.achievement-header-clickable');
+                                if (header) toggleAchievement(header);
+                            }
+                        });
+                    });
+                    
+                    collapseAllBtn.addEventListener('click', () => {
+                        const items = section.querySelectorAll('.achievement-item');
+                        items.forEach(item => {
+                            if (item.classList.contains('expanded')) {
+                                const header = item.querySelector('.achievement-header-clickable');
+                                if (header) toggleAchievement(header);
+                            }
+                        });
+                    });
+                    
+                    buttonContainer.appendChild(expandAllBtn);
+                    buttonContainer.appendChild(collapseAllBtn);
+                    title.parentNode.insertBefore(buttonContainer, title.nextSibling);
+                }
+            });
+        }
+
+        // ページ読み込み時に実行
+        document.addEventListener('DOMContentLoaded', function() {
+            addToggleAllButtons();
+            
+            // ハンバーガーメニューの機能を追加
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

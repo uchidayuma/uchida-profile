@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打田裕馬 - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">Yuma Uchida</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="achievements.html" class="nav-link">実績</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="typing-text">こんにちは、</span><br>
+                    <span class="hero-name">打田裕馬</span>です
+                </h1>
+                <p class="hero-subtitle">フルスタックエンジニア・心理学の専門家</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">詳しく見る</a>
+                    <a href="#contact" class="btn btn-secondary">お問い合わせ</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="floating-element element-1"></div>
+                    <div class="floating-element element-2"></div>
+                    <div class="floating-element element-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>エンジニアと心理学の架け橋</h3>
+                    <p>
+                        私は技術と人間の心理の両方に深い興味を持つフルスタックエンジニアです。
+                        プログラミングスキルと心理学の知識を組み合わせて、
+                        ユーザー体験を重視したアプリケーション開発を行っています。
+                    </p>
+                    <p>
+                        現在はDocker、Kubernetes、各種プログラミング言語を駆使して、
+                        スケーラブルで保守性の高いシステムの構築に取り組んでいます。
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="profile-image">
+                        <img src="images/profile.png" alt="打田裕馬のプロフィール写真" class="profile-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>フロントエンド</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript/TypeScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React/Vue.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>バックエンド</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Database</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>DevOps</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Docker</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Kubernetes</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">AWS/GCP</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="78%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>フルスタックエンジニア</h3>
+                        <p class="timeline-period">2022年 - 現在</p>
+                        <p>モダンな技術スタックを使用したWebアプリケーション開発</p>
+                        <ul>
+                            <li>Docker・Kubernetesを活用したコンテナ化</li>
+                            <li>マイクロサービスアーキテクチャの設計・実装</li>
+                            <li>CI/CDパイプラインの構築・運用</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>心理学専門家</h3>
+                        <p class="timeline-period">継続中</p>
+                        <p>心理学の知見をエンジニアリングに活用</p>
+                        <ul>
+                            <li>ユーザビリティ向上のための心理学的アプローチ</li>
+                            <li>チーム開発における心理的安全性の構築</li>
+                            <li>UX設計への心理学的知見の応用</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>お気軽にお問い合わせください</h3>
+                    <p>プロジェクトのご相談、技術的なディスカッション、心理学とエンジニアリングの融合についてなど、何でもお気軽にご連絡ください。</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <span class="contact-icon">📧</span>
+                            <span>Email: contact@yumauchida.com</span>
+                        </div>
+                        <div class="contact-method">
+                            <span class="contact-icon">💼</span>
+                            <span>LinkedIn: /in/yuma-uchida</span>
+                        </div>
+                        <div class="contact-method">
+                            <span class="contact-icon">🐱</span>
+                            <span>GitHub: @uchidayuma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="お名前" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="メールアドレス" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="メッセージ" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">送信</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Yuma Uchida. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
