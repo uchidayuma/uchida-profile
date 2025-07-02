@@ -6,6 +6,7 @@
     <title>打田裕馬 - Profile</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -374,6 +375,45 @@
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
+                        <h3>行政事業・地方創生コンサルティング</h3>
+                        <p class="timeline-period">2018年 - 2020年</p>
+                        <p class="timeline-company">人吉市役所 リモートワーク推進事業</p>
+                        <p>人吉市からの委託により、高校生向けリモートワーク体験イベントを企画・実施。IT人材育成による地方創生戦略を提案し、実際にインターン採用まで実現。</p>
+                        <div class="timeline-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon icon-building"></span>
+                                <div>
+                                    <strong>行政案件受注</strong>
+                                    <p>人吉市役所からの正式委託事業として実施</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon icon-graduation"></span>
+                                <div>
+                                    <strong>教育実績</strong>
+                                    <p>高校生5名が参加、全員課題完了、2名を採用</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon icon-target"></span>
+                                <div>
+                                    <strong>地方創生提案</strong>
+                                    <p>IT都市構想・リモートワーク推進戦略の策定</p>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>人吉市のIT都市構想サポートとリモートワーク人材育成事業</li>
+                            <li>高校生向けWebページ制作講座の企画・運営</li>
+                            <li>Slack、Asana、Zoom等のリモートワークツール導入研修</li>
+                            <li>地方でのIT人材確保・育成戦略の立案と実行</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
                         <h3>初フリーランス・技術基盤構築期</h3>
                         <p class="timeline-period">2017年9月 - 2018年2月</p>
                         <p class="timeline-company">ソーシャルギフトサービス「Anny」開発</p>
@@ -477,16 +517,38 @@
                 <div class="contact-form">
                     <form id="contact-form">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="お名前" required>
+                            <input type="text" id="name" name="user_name" placeholder="お名前" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="メールアドレス" required>
+                            <input type="email" id="email" name="user_email" placeholder="メールアドレス" required>
                         </div>
                         <div class="form-group">
                             <textarea id="message" name="message" placeholder="メッセージ" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">送信</button>
                     </form>
+                    <div id="form-success" style="display: none;">
+                        <div class="form-message success-message">
+                            <div class="message-icon">✅</div>
+                            <h3>送信完了！</h3>
+                            <p>お問い合わせありがとうございます。<br>48時間以内にご返信いたします。</p>
+                            <div class="message-progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <small>このメッセージは自動的に消えます</small>
+                        </div>
+                    </div>
+                    <div id="form-error" style="display: none;">
+                        <div class="form-message error-message">
+                            <div class="message-icon">❌</div>
+                            <h3>送信エラー</h3>
+                            <p>申し訳ございません。<br>しばらく後にもう一度お試しください。</p>
+                            <div class="message-progress">
+                                <div class="progress-bar error-progress"></div>
+                            </div>
+                            <small>このメッセージは自動的に消えます</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

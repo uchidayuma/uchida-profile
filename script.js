@@ -115,23 +115,61 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleContactForm() {
+        // EmailJS初期化
+        emailjs.init("iCeORWdojmPHJx0je");
+        
         const form = document.getElementById('contact-form');
         
         if (form) {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const formData = new FormData(this);
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const message = formData.get('message');
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.textContent;
                 
-                if (name && email && message) {
-                    alert('お問い合わせありがとうございます！後ほどご連絡いたします。');
-                    this.reset();
-                } else {
+                // バリデーション
+                const name = this.user_name.value.trim();
+                const email = this.user_email.value.trim();
+                const message = this.message.value.trim();
+                
+                if (!name || !email || !message) {
                     alert('すべての項目を入力してください。');
+                    return;
                 }
+                
+                // 送信中の表示
+                button.textContent = '送信中...';
+                button.disabled = true;
+                
+                // EmailJSで送信
+                emailjs.sendForm('service_cm72dfl', 'template_ww5gsgz', this)
+                    .then(() => {
+                        // 成功時の処理
+                        document.getElementById('form-success').style.display = 'block';
+                        document.getElementById('form-error').style.display = 'none';
+                        
+                        // 5秒後にフォームを再表示
+                        setTimeout(() => {
+                            document.getElementById('form-success').style.display = 'none';
+                            form.reset();
+                            button.textContent = originalText;
+                            button.disabled = false;
+                        }, 5000);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        
+                        // エラー時の処理
+                        document.getElementById('form-error').style.display = 'block';
+                        document.getElementById('form-success').style.display = 'none';
+                        
+                        // 5秒後にエラーメッセージを非表示
+                        setTimeout(() => {
+                            document.getElementById('form-error').style.display = 'none';
+                            button.textContent = originalText;
+                            button.disabled = false;
+                        }, 5000);
+                    });
             });
         }
     }
