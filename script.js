@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.3 });
 
         elements.forEach(element => {
             observer.observe(element);
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 item.classList.add('slide-in-right');
             }
-            item.style.transitionDelay = `${index * 0.3}s`;
+            item.style.transitionDelay = `${index * 0.1}s`;
         });
 
         if (contactInfo) {
@@ -287,39 +287,69 @@ document.addEventListener('mousemove', function(e) {
 
 window.addEventListener('load', function() {
     const loader = document.createElement('div');
-    loader.className = 'loader';
+    loader.className = 'loader-overlay';
     loader.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: rgba(45, 74, 107, 0.95);
+        backdrop-filter: blur(10px);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 10000;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.6s ease;
     `;
     
-    const loaderText = document.createElement('div');
-    loaderText.textContent = 'Loading...';
-    loaderText.style.cssText = `
+    const loaderContent = document.createElement('div');
+    loaderContent.className = 'loader-content';
+    loaderContent.style.cssText = `
+        text-align: center;
         color: white;
-        font-size: 2rem;
-        font-weight: 600;
-        animation: pulse 1.5s ease-in-out infinite;
     `;
     
-    loader.appendChild(loaderText);
+    // 脳のネットワークをイメージしたSVGアイコン
+    const loaderIcon = document.createElement('div');
+    loaderIcon.innerHTML = `
+        <svg width="120" height="120" viewBox="0 0 80 80">
+            <g fill="none" stroke="#10B981" stroke-width="2">
+                <!-- 脳の形状をイメージした曲線 -->
+                <path d="M20 40 Q30 20, 50 25 Q70 30, 75 45 Q70 60, 50 55 Q30 60, 20 40" 
+                      fill="rgba(16, 185, 129, 0.1)" class="brain-outline"/>
+                
+                <!-- ネットワーク接続点 -->
+                <circle cx="25" cy="35" r="4" fill="#10B981" class="node node-1"/>
+                <circle cx="40" cy="25" r="4" fill="#F59E0B" class="node node-2"/>
+                <circle cx="55" cy="30" r="4" fill="#8B5CF6" class="node node-3"/>
+                <circle cx="65" cy="45" r="4" fill="#10B981" class="node node-4"/>
+                <circle cx="50" cy="50" r="4" fill="#F59E0B" class="node node-5"/>
+                <circle cx="35" cy="45" r="4" fill="#8B5CF6" class="node node-6"/>
+                
+                <!-- 動的な接続線 -->
+                <line x1="25" y1="35" x2="40" y2="25" class="connection conn-1"/>
+                <line x1="40" y1="25" x2="55" y2="30" class="connection conn-2"/>
+                <line x1="55" y1="30" x2="65" y2="45" class="connection conn-3"/>
+                <line x1="65" y1="45" x2="50" y2="50" class="connection conn-4"/>
+                <line x1="50" y1="50" x2="35" y2="45" class="connection conn-5"/>
+                <line x1="35" y1="45" x2="25" y2="35" class="connection conn-6"/>
+                <line x1="40" y1="25" x2="35" y2="45" class="connection conn-7"/>
+                <line x1="55" y1="30" x2="50" y2="50" class="connection conn-8"/>
+            </g>
+        </svg>
+    `;
+    
+    loaderContent.appendChild(loaderIcon);
+    loader.appendChild(loaderContent);
     document.body.appendChild(loader);
     
     setTimeout(() => {
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.remove();
-        }, 500);
-    }, 1500);
+        }, 600);
+    }, 800);
 });
 
 const style = document.createElement('style');
@@ -355,6 +385,75 @@ style.textContent = `
         100% {
             transform: translateY(-100px) translateX(100px);
             opacity: 0;
+        }
+    }
+    
+    /* ローディングアニメーション */
+    .brain-outline {
+        animation: brainPulse 2s ease-in-out infinite;
+    }
+    
+    .node {
+        animation: nodeGlow 1.5s ease-in-out infinite;
+    }
+    
+    .node-1 { animation-delay: 0s; }
+    .node-2 { animation-delay: 0.2s; }
+    .node-3 { animation-delay: 0.4s; }
+    .node-4 { animation-delay: 0.6s; }
+    .node-5 { animation-delay: 0.8s; }
+    .node-6 { animation-delay: 1.0s; }
+    
+    .connection {
+        stroke-dasharray: 20;
+        stroke-dashoffset: 20;
+        animation: connectionFlow 2s linear infinite;
+    }
+    
+    .conn-1 { animation-delay: 0s; }
+    .conn-2 { animation-delay: 0.3s; }
+    .conn-3 { animation-delay: 0.6s; }
+    .conn-4 { animation-delay: 0.9s; }
+    .conn-5 { animation-delay: 1.2s; }
+    .conn-6 { animation-delay: 1.5s; }
+    .conn-7 { animation-delay: 0.8s; }
+    .conn-8 { animation-delay: 1.1s; }
+    
+    @keyframes brainPulse {
+        0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.6;
+            transform: scale(1.05);
+        }
+    }
+    
+    @keyframes nodeGlow {
+        0%, 100% {
+            opacity: 0.6;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.3);
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+    }
+    
+    @keyframes connectionFlow {
+        0% {
+            stroke-dashoffset: 20;
+            opacity: 0.3;
+        }
+        50% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+        }
+        100% {
+            stroke-dashoffset: -20;
+            opacity: 0.3;
         }
     }
 `;
